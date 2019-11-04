@@ -1,0 +1,32 @@
+﻿@model DapperDemo.Models.CustomersViewModel
+
+@{
+    ViewData["Title"] = "ACustomer";
+}
+
+<p>Please type in a first name...</p>
+
+<form asp-controller="Northwind" asp-action="ACustomer" method="post">
+
+    <label>First Name</label>
+    <input type="text" name="firstName" />
+
+    <button>Search</button>
+
+</form>
+
+@foreach (var customer in Model.Customers)
+{
+    <h2>@customer.ContactName</h2>
+
+    <p>@customer.Id</p>
+    <p>@customer.CompanyName</p>
+    <p>@customer.Address</p>
+    <p>@customer.City</p>
+    <p>@customer.Region</p>
+    <p>@customer.PostalCode</p>
+    <p>@customer.Country</p>
+    <p>@customer.Phone</p>
+
+
+}

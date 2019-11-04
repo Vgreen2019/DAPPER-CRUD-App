@@ -1,0 +1,48 @@
+﻿@model CustomersViewModel
+
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<h2>Customers</h2>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Company Name</th>
+                <th>Contact Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Region</th>
+                <th>Postal Code</th>
+                <th>Country</th>
+                <th>Phone</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model.Customers)
+            {
+            <tr>
+                <td>@customer.Id</td>
+                <td>@customer.CompanyName</td>
+                <td>@customer.ContactName</td>
+                <td>@customer.Address</td>
+                <td>@customer.City</td>
+                <td>@customer.Region</td>
+                <td>@customer.PostalCode</td>
+                <td>@customer.Country</td>
+                <td>@customer.Phone</td>
+
+
+            </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
+

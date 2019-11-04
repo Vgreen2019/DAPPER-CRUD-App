@@ -1,0 +1,31 @@
+﻿@model DapperDemo.Models.AProductViewModel
+
+@{
+    ViewData["Title"] = "ProductInfo";
+}
+
+<h2>ProductInfo</h2>
+
+<div>
+    <hr />
+    <div>
+        <p>ID: @Model.ID</p>
+        <p>Name: @Model.Name</p>
+        <p>Supplier ID: @Model.SupplierID</p>
+        <p>Category ID: @Model.CategoryID</p>
+        <p>Quantity Per Unit: @Model.QuantityPerUnit</p>
+        <p>Unit Price: @Model.UnitPrice</p>
+        <p>Units In Stock: @Model.UnitsInStock</p>
+        <p>Units On Order: @Model.UnitsOnOrder</p>
+    </div>
+</div>
+
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-controller="Northwind" asp-action="Product">Back to Product List</a>
+    <a asp-controller="Northwind" asp-action="RemoveProductResults" asp-route-id="@Model.ID">Delete Product</a>
+    <a asp-controller="Northwind" asp-action="EditProduct" asp-route-id="@Model.ID">Edit</a>
+
+
+</div>
