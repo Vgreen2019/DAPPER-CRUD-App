@@ -1,86 +1,81 @@
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using Dapper;
-using DapperDemo.DAL.Model;
+using DapperDemo.DAL;
+using DapperDemo.Models;
+using DapperDemo.NorthwindServices;
+using Microsoft.AspNetCore.Mvc;
 
-namespace DapperDemo.DAL
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DapperDemo.Controllers
 {
-    public class ProductStore : IProductStore
+    public class NorthwindController : Controller
     {
-        private readonly Database _config;
+        private readonly ICustomerService _customerService;
+        private readonly IProductService _productService;
 
-        public ProductStore(DapperDemoConfiguration config)
+        public NorthwindController(ICustomerService customerService, IProductService productService)
         {
-            _config = config.Database;
+            _customerService = customerService;
+            _productService = productService;
         }
-
-        public IEnumerable<ProductDALModel> SelectAllProducts()
+        
+        public IActionResult Customer()
         {
-            var sql = @"SELECT * FROM Products ORDER BY ProductName ASC";
-
-            using (var connection = new SqlConnection(_config.ConnectionString))    
-            {
-                var results = connection.Query<ProductDALModel>(sql) ?? new List<ProductDALModel>();
-                return results;
-
-            }
+            var result = _customerService.GettingCustomers();
+            return View(result);
         }
-
-        public ProductDALModel SelectAProduct(int id)
+        
+        public IActionResult Product() 
         {
-            var sql = @"SELECT * FROM Products WHERE ProductID = @ProductID";       
-
-            using (var connection = new SqlConnection(_config.ConnectionString))    
-            {
-                var results = connection.QueryFirstOrDefault<ProductDALModel>(sql, new { ProductID = id});
-                return results;
-
-            }
+            var result = _productService.GettingProducts();
+            return View(result);
         }
 
-        public bool InsertNewProduct(ProductDALModel dalModel) 
+        public IActionResult ProductInfo(int id)
         {
-            var sql = $@"INSERT INTO Products (ProductName, QuantityPerUnit) 
-                            VALUES (@{nameof(dalModel.ProductName)}, @{nameof(dalModel.QuantityPerUnit)})";
-
-            using (var connection = new SqlConnection(_config.ConnectionString))
-            {
-                var results = connection.Execute(sql, dalModel);
-                
-                return true;
-            }
-
-
+            var result = _productService.GetProductInfo(id);
+            return View(result);
         }
 
-        public bool DeleteProduct(int id)     
+        public IActionResult AddProduct()
         {
-            var sql = $@"DELETE FROM Products WHERE ProductID = @ProductID";
-
-            using (var connection = new SqlConnection(_config.ConnectionString))
-            {
-                var results = connection.Execute(sql, new { ProductID = id });     
-
-                return true;
-            }
+            return View();
         }
 
-         
-
-        public bool UpdateProduct(ProductDALModel dalModel)
-        {                                                       
-            var sql = $@"UPDATE Products SET ProductName = @{nameof(dalModel.ProductName)}, QuantityPerUnit = @{nameof(dalModel.QuantityPerUnit)} 
-                    WHERE ProductID = @{nameof(dalModel.ProductID)}"; 
-
-            using (var connection = new SqlConnection(_config.ConnectionString))
-            {
-                var results = connection.Execute(sql, dalModel);      
-
-                return true;
-            }
+        public IActionResult AddProductResults(AddProductViewModel model)
+        {
+            var productsViewModel = _productService.AddNewProduct(model);  
+            return View("Product", productsViewModel);
         }
+
+        public IActionResult DeleteProduct(int id)
+        {
+            var result = _productService.GetProductInfo(id );
+
+            return View(result);
+        }
+
+        public IActionResult RemoveProductResults(int id)
+        {
+            var productsViewModel = _productService.RemoveProduct(id); 
+            return View("Product", productsViewModel);
+        }
+
+        public IActionResult EditProduct(AProductViewModel model)     
+        {
+            var getProduct = _productService.GetProductInfo(model.ID);
+
+            return View(getProduct);   
+        }
+
+        public IActionResult EditProductResults(AProductViewModel model)
+        {
+            var editedProduct = _productService.EditProduct(model);  
+            return View("Product", editedProduct);
+        }
+
     }
 }
