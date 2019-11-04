@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -21,10 +21,9 @@ namespace DapperDemo.DAL
         {
             var sql = @"SELECT * FROM Products ORDER BY ProductName ASC";
 
-            using (var connection = new SqlConnection(_config.ConnectionString))    //using statement to manage memory. This will always implement an IDisposable, which closes the connection
+            using (var connection = new SqlConnection(_config.ConnectionString))    
             {
                 var results = connection.Query<ProductDALModel>(sql) ?? new List<ProductDALModel>();
-                //not adding or removing from the list, this is why we use the type of IEnumerable called List
                 return results;
 
             }
@@ -42,7 +41,7 @@ namespace DapperDemo.DAL
             }
         }
 
-        public bool InsertNewProduct(ProductDALModel dalModel)  //MIGHT HAVE TROUBLE WITH DATA TYPES, ESP DISCONTINUED
+        public bool InsertNewProduct(ProductDALModel dalModel) 
         {
             var sql = $@"INSERT INTO Products (ProductName, QuantityPerUnit) 
                             VALUES (@{nameof(dalModel.ProductName)}, @{nameof(dalModel.QuantityPerUnit)})";
@@ -57,38 +56,28 @@ namespace DapperDemo.DAL
 
         }
 
-        public bool DeleteProduct(ProductDALModel dalModel)     //MIGHT NEED TO ALTER THE INPUT by adding productDALModel
+        public bool DeleteProduct(int id)     
         {
-            var sql = $@"DELETE FROM Products WHERE ProductID = @{nameof(dalModel.ProductID)}";
+            var sql = $@"DELETE FROM Products WHERE ProductID = @ProductID";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
-                var results = connection.Execute(sql, dalModel);      //MIGHT NEED A DIFFERENT EXECUTE METHOD
+                var results = connection.Execute(sql, new { ProductID = id });     
 
                 return true;
             }
         }
 
-
-        //public bool DeleteProduct(int id)     //MIGHT NEED TO ALTER THE INPUT by adding productDALModel
-        //{
-        //    var sql = @"DELETE FROM Products WHERE ProductID = @ProductID";
-
-        //    using (var connection = new SqlConnection(_config.ConnectionString))
-        //    {
-        //        var results = connection.Execute(sql, new { ProductID = id });      //MIGHT NEED A DIFFERENT EXECUTE METHOD
-
-        //        return true;
-        //    }
-        //}
+         
 
         public bool UpdateProduct(ProductDALModel dalModel)
-        {
-            var sql = $@"UPDATE Products SET ProductName = 'THE NEW NEW' WHERE ProductID = @{nameof(dalModel.ProductID)}";
+        {                                                       
+            var sql = $@"UPDATE Products SET ProductName = @{nameof(dalModel.ProductName)}, QuantityPerUnit = @{nameof(dalModel.QuantityPerUnit)} 
+                    WHERE ProductID = @{nameof(dalModel.ProductID)}"; 
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
-                var results = connection.Execute(sql, dalModel);      //MIGHT NEED A DIFFERENT EXECUTE METHOD
+                var results = connection.Execute(sql, dalModel);      
 
                 return true;
             }
