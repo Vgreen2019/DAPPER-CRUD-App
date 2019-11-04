@@ -11,7 +11,7 @@ namespace DapperDemo.DAL
         IEnumerable<ProductDALModel> SelectAllProducts();
         ProductDALModel SelectAProduct(int id);
         bool InsertNewProduct(ProductDALModel dalModel);
-        bool DeleteProduct(ProductDALModel dalModel);
+        bool DeleteProduct(int id);
         bool UpdateProduct(ProductDALModel dalModel);
     }
 }
