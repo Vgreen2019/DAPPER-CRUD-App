@@ -8,11 +8,11 @@ namespace DapperDemo.NorthwindServices
 {
     public interface IProductService
     {
-        ProductsViewModel GettingProducts();
+       ProductsViewModel GettingProducts();
         AProductViewModel GetProductInfo(int id);
         ProductsViewModel AddNewProduct(AddProductViewModel model);
-        ProductsViewModel RemoveProduct(AProductViewModel model);
-        ProductsViewModel EditProductName(AProductViewModel model);
+        ProductsViewModel RemoveProduct(int id);
+        ProductsViewModel EditProduct(AProductViewModel model);
 
 
     }
