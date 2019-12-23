@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +7,7 @@ using DapperDemo.Models;
 using DapperDemo.NorthwindServices;
 using Microsoft.AspNetCore.Mvc;
 
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace DapperDemo.Controllers
 {
@@ -27,7 +28,12 @@ namespace DapperDemo.Controllers
             return View(result);
         }
 
-       
+        //public IActionResult ACustomer()
+        //{
+        //    var result = _customerService.GetCustomer(string firstName);
+        //    return View(result);
+        //}
+
         public IActionResult Product() 
         {
             var result = _productService.GettingProducts();
@@ -64,7 +70,7 @@ namespace DapperDemo.Controllers
             return View("Product", productsViewModel);
         }
 
-        public IActionResult EditProduct(AProductViewModel model)     
+        public IActionResult EditProduct(AProductViewModel model)     //changed ID to model
         {
             var getProduct = _productService.GetProductInfo(model.ID);
 
