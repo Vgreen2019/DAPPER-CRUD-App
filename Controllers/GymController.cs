@@ -55,6 +55,14 @@ namespace DapperDemo.Controllers
               
             return View(result);
         }
+
+        public IActionResult RemoveGymLocation(int id)
+        {
+            var result = _gymService.EditGymLocationInfo(model);
+
+            return View(result);
+        }
+        
     }
     
 }

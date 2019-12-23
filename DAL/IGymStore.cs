@@ -12,6 +12,7 @@ namespace DapperDemo.DAL
         GymDALModel SelectALocation(int id);
         bool InsertNewLocation(GymDALModel dalModel);
         bool EditLocation(GymDALModel dalModel);
+        bool DeleteLocation(int id);
 
     }
 }
