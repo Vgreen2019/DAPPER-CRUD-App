@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,6 +33,7 @@ namespace DapperDemo.NorthwindServices
             }
 
             var productModel = new ProductsViewModel();
+        
             productModel.Products = products;
 
             return productModel;
@@ -85,7 +86,6 @@ namespace DapperDemo.NorthwindServices
 
         public ProductsViewModel RemoveProduct(int id)
         {
-            var dalModel = new ProductDALModel();
             _productStore.DeleteProduct(id);
 
             var dalProducts = _productStore.SelectAllProducts();

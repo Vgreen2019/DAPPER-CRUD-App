@@ -1,81 +1,84 @@
-using System;
+﻿using Dapper;
+using DapperDemo.DAL.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DapperDemo.DAL;
-using DapperDemo.Models;
-using DapperDemo.NorthwindServices;
-using Microsoft.AspNetCore.Mvc;
+using System.Data.SqlClient;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace DapperDemo.Controllers
+namespace DapperDemo.DAL
 {
-    public class NorthwindController : Controller
+    public class ProductStore : IProductStore
     {
-        private readonly ICustomerService _customerService;
-        private readonly IProductService _productService;
+        private readonly Database _config;
 
-        public NorthwindController(ICustomerService customerService, IProductService productService)
+        public ProductStore(DapperDemoConfiguration config)
         {
-            _customerService = customerService;
-            _productService = productService;
-        }
-        
-        public IActionResult Customer()
-        {
-            var result = _customerService.GettingCustomers();
-            return View(result);
-        }
-        
-        public IActionResult Product() 
-        {
-            var result = _productService.GettingProducts();
-            return View(result);
+            _config = config.Database;
         }
 
-        public IActionResult ProductInfo(int id)
+        public IEnumerable<ProductDALModel> SelectAllProducts()
         {
-            var result = _productService.GetProductInfo(id);
-            return View(result);
+            var sql = @"SELECT * FROM Products ORDER BY ProductName ASC";
+
+            using (var connection = new SqlConnection(_config.ConnectionString))    //using statement to manage memory. This will always implement an IDisposable, which closes the connection
+            {
+                var results = connection.Query<ProductDALModel>(sql) ?? new List<ProductDALModel>();
+                //not adding or removing from the list, this is why we use the type of IEnumerable called List
+                return results;
+
+            }
         }
 
-        public IActionResult AddProduct()
+        public ProductDALModel SelectAProduct(int id)
         {
-            return View();
+            var sql = @"SELECT * FROM Products WHERE ProductID = @ProductID";       
+
+            using (var connection = new SqlConnection(_config.ConnectionString))    
+            {
+                var results = connection.QueryFirstOrDefault<ProductDALModel>(sql, new { ProductID = id });
+                return results;
+
+            }
         }
 
-        public IActionResult AddProductResults(AddProductViewModel model)
+        public bool InsertNewProduct(ProductDALModel dalModel) 
         {
-            var productsViewModel = _productService.AddNewProduct(model);  
-            return View("Product", productsViewModel);
+            var sql = $@"INSERT INTO Products (ProductName, QuantityPerUnit) 
+                            VALUES (@{nameof(dalModel.ProductName)}, @{nameof(dalModel.QuantityPerUnit)})";
+
+            using (var connection = new SqlConnection(_config.ConnectionString))
+            {
+                var results = connection.Execute(sql, dalModel);
+                
+                return true;
+            }
+
+
         }
 
-        public IActionResult DeleteProduct(int id)
+        public bool DeleteProduct(int id)     
         {
-            var result = _productService.GetProductInfo(id );
+            var sql = $@"DELETE FROM Products WHERE ProductID = @ProductID";
 
-            return View(result);
+            using (var connection = new SqlConnection(_config.ConnectionString))
+            {
+                var results = connection.Execute(sql, new { ProductID = id });     
+
+                return true;
+            }
         }
 
-        public IActionResult RemoveProductResults(int id)
-        {
-            var productsViewModel = _productService.RemoveProduct(id); 
-            return View("Product", productsViewModel);
+         
+
+        public bool UpdateProduct(ProductDALModel dalModel)
+        {                                                       
+            var sql = $@"UPDATE Products SET ProductName = @{nameof(dalModel.ProductName)}, QuantityPerUnit = @{nameof(dalModel.QuantityPerUnit)} 
+                    WHERE ProductID = @{nameof(dalModel.ProductID)}"; 
+
+            using (var connection = new SqlConnection(_config.ConnectionString))
+            {
+                var results = connection.Execute(sql, dalModel);      
+
+                return true;
+            }
         }
-
-        public IActionResult EditProduct(AProductViewModel model)     
-        {
-            var getProduct = _productService.GetProductInfo(model.ID);
-
-            return View(getProduct);   
-        }
-
-        public IActionResult EditProductResults(AProductViewModel model)
-        {
-            var editedProduct = _productService.EditProduct(model);  
-            return View("Product", editedProduct);
-        }
-
     }
 }

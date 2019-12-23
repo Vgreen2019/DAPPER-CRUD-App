@@ -1,0 +1,26 @@
+﻿@model LocationViewModel
+
+@{
+    ViewData["Title"] = "EditGymInfo";
+}
+
+<h2>Edit Gym Information</h2>
+
+<form asp-controller="Gym" asp-action="EditLocationResults" method="post">
+    <input type="hidden" asp-for="@Model.LocationId" />
+
+    <label>Gym Name</label>
+    <input type="text" asp-for="@Model.GymName" />
+
+    <label>Open After 10Pm?</label>
+    <input type="text" asp-for="@Model.OpenAfter10PM" />
+
+    <label>Membership Price</label>
+    <input type="text" asp-for="@Model.MembershipPrice" />
+
+    <label>City</label>
+    <input type="text" asp-for="@Model.City" />
+
+    <button type="submit">Edit Location</button>
+</form>
+

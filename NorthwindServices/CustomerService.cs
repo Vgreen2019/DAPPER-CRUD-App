@@ -72,6 +72,33 @@ namespace DapperDemo.NorthwindServices
             return customerViewModel;
 
         }
-             
+
+        ////LINQ Example
+        //private CustomersViewModel MapCustomersViewModel (IEnumberable<CustomerDALModel> dalCustomers)
+        //{
+        //    //Used to confirm if anything is in the IEnumerable
+        //    if (dalCustomers.Any(x => x.ContactName == "Joe))
+        //    {
+        //        var result = dalCustomers
+        //        .Where(dalCustomer => dalCustomer.ContactName.ToUpper()[0] != 'A')
+        //        .Select(dalCustomer => new CustomersViewModel(dalCustomer))
+        //        .OrderByDescending(x => x.Name)
+        //        .ToList();
+        //    }
+
+
+        //    //can be used instead of foreach statement
+        //    var selectedList = dalCustomers
+        //        .Where(dalCustomer => dalCustomer.ContactName.ToUpper()[0] != 'A')
+        //        .Select(dalCustomer => new CustomersViewModel(dalCustomer))
+        //        .OrderByDescending(x => x.Name)
+        //        .ToList();
+
+          
+        //}
+
+        
+        
+
     }
 }
