@@ -64,5 +64,16 @@ namespace DapperDemo.DAL
                 return true;
             }
         }
+
+        public bool DeleteLocation(int id)
+        {
+            var sql = @"DELETE FROM Locations WHERE LocationID = @LocationID";
+
+            using (var connection = new SqlConnection(_config.ConnectionString))
+            {
+                var results = connection.Execute(sql, new { LocationID = id });
+                return true;
+            }
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace DapperDemo.GymServices
         LocationViewModel ViewLocation(int id);
         AddResultsViewModel AddNewLocation(AddLocationViewModel model);
         EditLocationViewModel EditGymLocationInfo(LocationViewModel model);
+        DeleteLocationViewModel DeleteGymLocation(int id);
     }
 }
 
