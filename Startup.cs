@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DapperDemo.DAL;
+using DapperDemo.GymServices;
 using DapperDemo.NorthwindServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,6 +43,9 @@ namespace DapperDemo
             services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<IProductStore, ProductStore>();
             services.AddSingleton<IProductService, ProductService>();
+            services.AddSingleton<IGymStore, GymStore>();
+            services.AddSingleton<IGymService, GymService>();
+
 
 
             services.Configure<CookiePolicyOptions>(options =>

@@ -1,0 +1,10 @@
+﻿@model DeleteLocationViewModel
+
+@{
+    ViewData["Title"] = "RemoveGymLocation";
+}
+
+<h2>@Model.DeleteConfirmationMessage</h2>
+
+<a asp-controller="Gym" asp-action="AllLocations"><button>See Locations List</button></a>
+<a asp-controller="Gym" asp-action="AddLocation"><button>Add New Location</button></a>

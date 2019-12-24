@@ -18,10 +18,9 @@ namespace DapperDemo.DAL
         {
             var sql = @"SELECT * FROM Locations ORDER BY GymName ASC";
 
-            using (var connection = new SqlConnection(_config.ConnectionString))    //using statement to manage memory. This will always implement an IDisposable, which closes the connection
+            using (var connection = new SqlConnection(_config.ConnectionString))   
             {
                 var results = connection.Query<GymDALModel>(sql) ?? new List<GymDALModel>();
-                //not adding or removing from the list, this is why we use the type of IEnumerable called List
                 return results;
 
             }
@@ -48,20 +47,35 @@ namespace DapperDemo.DAL
             {
                 var results = connection.Execute(sql, dalModel);
 
-                return true;
+                if (results == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
         }
 
         public bool EditLocation(GymDALModel dalModel)
         {
+            var sql = $@"UPDATE Locations 
+                         SET GymName = @{nameof(dalModel.GymName)}, OpenAfter10PM = @{nameof(dalModel.OpenAfter10PM)}, MembershipPrice = @{nameof(dalModel.MembershipPrice)}, City = @{nameof(dalModel.City)} 
+                         WHERE LocationID = @{nameof(dalModel.LocationId)}";
 
-            var sql = $@"UPDATE Locations SET GymName = @{nameof(dalModel.GymName)}, OpenAfter10PM = @{nameof(dalModel.OpenAfter10PM)}, MembershipPrice = @{nameof(dalModel.MembershipPrice)}, City = @{nameof(dalModel.City)} WHERE LocationID = {nameof(dalModel.LocationId)}";
-          
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
                 var results = connection.Execute(sql, dalModel);
-
-                return true;
+                if (results == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -72,7 +86,14 @@ namespace DapperDemo.DAL
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
                 var results = connection.Execute(sql, new { LocationID = id });
-                return true;
+                if (results == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
     }

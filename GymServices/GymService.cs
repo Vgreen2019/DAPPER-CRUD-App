@@ -90,6 +90,25 @@ namespace DapperDemo.GymServices
             return editLocationVM;
         }
 
+        public DeleteLocationViewModel DeleteGymLocation(int id)
+        {
+            var gymInfo = _gymStore.DeleteLocation(id);
+            var deleteLocationViewModel = new DeleteLocationViewModel();
+
+            if (gymInfo == true)
+            {
+                deleteLocationViewModel.DeleteConfirmationMessage = "This gym has been deleted.";
+            }
+            else
+            {
+                deleteLocationViewModel.DeleteConfirmationMessage = "This gym has not been deleted.";
+            }
+
+            return deleteLocationViewModel;
+        }
+
+
+        //PRIVATE METHODS
         private static LocationsViewModel MapDALToViewModel(IEnumerable<DAL.Model.GymDALModel> dalLocations)
         {
             var locations = new List<Location>();
@@ -126,6 +145,6 @@ namespace DapperDemo.GymServices
             return locationViewModel;
         }
 
-       
+        
     }
 }

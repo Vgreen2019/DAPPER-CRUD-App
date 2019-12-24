@@ -24,8 +24,8 @@
 
                     <td>
                         <a asp-controller="Gym" asp-action="LocationInfo" asp-route-id="@location.LocationId">@location.GymName</a>
-                        <a asp-controller="Gym" asp-action="EditGymInfo" asp-route-id="@location.LocationId">Edit</a>
-                        <a asp-controller="Gym" asp-action="RemoveGymLocation" asp-route-id="@location.LocationId">Delete</a>
+                        <a asp-controller="Gym" asp-action="EditGymInfo" asp-route-id="@location.LocationId"><button>Edit</button></a>
+                        <a asp-controller="Gym" asp-action="RemoveGymLocation" asp-route-id="@location.LocationId"><button>Delete</button></a>
 
 
                     </td>
