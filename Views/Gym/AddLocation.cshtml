@@ -4,20 +4,22 @@
     ViewData["Title"] = "AddLocation";
 }
 
-<h2>Add New Location</h2>
+    <body class="gymhome">
+        <h2>Add New Location</h2>
 
-<form asp-controller="Gym" asp-action="AddLocationResults" method="post">
-    <label>Gym Name</label>
-    <input type="text" asp-for="@Model.GymName" />
+        <form asp-controller="Gym" asp-action="AddLocationResults" method="post">
+            <label>Gym Name</label>
+            <input type="text" asp-for="@Model.GymName" />
 
-    <label>Open After 10Pm?</label>
-    <input type="text" asp-for="@Model.OpenAfter10PM" />
+            <label>Open After 10Pm?</label>
+            <input type="text" asp-for="@Model.OpenAfter10PM" />
 
-    <label>Membership Price</label>
-    <input type="text" asp-for="@Model.MembershipPrice" />
+            <label>Membership Price</label>
+            <input type="text" asp-for="@Model.MembershipPrice" />
 
-    <label>City</label>
-    <input type="text" asp-for="@Model.City" />
+            <label>City</label>
+            <input type="text" asp-for="@Model.City" />
 
-    <button type="submit">Add Location</button>
-</form>
+            <button type="submit">Add Location</button>
+        </form>
+    </body>
