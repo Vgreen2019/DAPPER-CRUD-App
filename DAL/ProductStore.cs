@@ -70,8 +70,9 @@ namespace DapperDemo.DAL
 
         public bool UpdateProduct(ProductDALModel dalModel)
         {                                                       
-            var sql = $@"UPDATE Products SET ProductName = @{nameof(dalModel.ProductName)}, QuantityPerUnit = @{nameof(dalModel.QuantityPerUnit)} 
-                    WHERE ProductID = @{nameof(dalModel.ProductID)}"; 
+            var sql = $@"UPDATE Products 
+                         SET ProductName = @{nameof(dalModel.ProductName)}, QuantityPerUnit = @{nameof(dalModel.QuantityPerUnit)} 
+                         WHERE ProductID = @{nameof(dalModel.ProductID)}"; 
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
