@@ -4,45 +4,47 @@
     ViewData["Title"] = "LocationInfo";
 }
 
-<h2>LocationInfo</h2>
+    <body class="gymhome">
+        <h2>LocationInfo</h2>
 
-<div>
-    <h4>LocationViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LocationId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LocationId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.GymName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GymName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.OpenAfter10PM)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OpenAfter10PM)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MembershipPrice)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MembershipPrice)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-controller="Gym" asp-action="EditGymInfo" asp-route-id="@Model.LocationId" >Edit</a> |
-    <a asp-controller="Gym" asp-action="AllLocations">Back to List</a>
-</div>
+        <div>
+            <h4>LocationViewModel</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.LocationId)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LocationId)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.GymName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.GymName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.OpenAfter10PM)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.OpenAfter10PM)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.MembershipPrice)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.MembershipPrice)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-controller="Gym" asp-action="EditGymInfo" asp-route-id="@Model.LocationId">Edit</a> |
+            <a asp-controller="Gym" asp-action="AllLocations">Back to List</a>
+        </div>
+    </body>

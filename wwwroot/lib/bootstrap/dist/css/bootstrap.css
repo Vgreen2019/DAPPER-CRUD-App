@@ -5,12 +5,14 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    background-image: url('https://image.freepik.com/free-photo/fitness-exercise-working-out-healthy-lifestyle-background-concept_47840-276.jpg');
 }
 body {
-  margin: 0;
+    margin: 0;
+    background-image: url('https://image.freepik.com/free-photo/fitness-exercise-working-out-healthy-lifestyle-background-concept_47840-276.jpg');
 }
 article,
 aside,
