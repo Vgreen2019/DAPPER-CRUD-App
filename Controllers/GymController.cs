@@ -58,7 +58,7 @@ namespace DapperDemo.Controllers
 
         public IActionResult RemoveGymLocation(int id)
         {
-            var result = _gymService.EditGymLocationInfo(model);
+            var result = _gymService.DeleteGymLocation(id);
 
             return View(result);
         }

@@ -7,5 +7,7 @@ namespace DapperDemo.Models
 {
     public class DeleteLocationViewModel
     {
+        public string DeleteConfirmationMessage { get; set; }
+
     }
 }
