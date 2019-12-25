@@ -82,5 +82,17 @@ namespace DapperDemo.DAL
                 return true;
             }
         }
+
+        public IEnumerable<ProductDALModel> SearchAProduct(string searchTerm)
+        {
+            var sql = $@"SELECT * FROM Products WHERE ProductName LIKE '{searchTerm}%'";
+
+            using (var connection = new SqlConnection(_config.ConnectionString2))    
+            {
+                var results = connection.Query<ProductDALModel>(sql) ?? new List<ProductDALModel>();
+                return results;
+
+            }
+        }
     }
 }

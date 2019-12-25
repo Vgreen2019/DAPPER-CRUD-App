@@ -13,5 +13,8 @@ namespace DapperDemo.DAL
         bool InsertNewProduct(ProductDALModel dalModel);
         bool DeleteProduct(int id);
         bool UpdateProduct(ProductDALModel dalModel);
+        IEnumerable<ProductDALModel> SearchAProduct(string search);
+
+
     }
 }

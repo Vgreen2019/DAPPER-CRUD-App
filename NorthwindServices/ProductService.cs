@@ -21,22 +21,7 @@ namespace DapperDemo.NorthwindServices
         public ProductsViewModel GettingProducts()
         {
             var dalProducts = _productStore.SelectAllProducts();
-            var products = new List<Product>();
-
-            foreach (var dalProduct in dalProducts)
-            {
-                var product = new Product();
-                product.Name = dalProduct.ProductName;
-                product.ID = dalProduct.ProductID;
-               
-                products.Add(product);
-            }
-
-            var productModel = new ProductsViewModel();
-        
-            productModel.Products = products;
-
-            return productModel;
+            return ReturnListOfProducts(dalProducts);
         }
 
         public AProductViewModel GetProductInfo(int id)
@@ -58,51 +43,22 @@ namespace DapperDemo.NorthwindServices
 
         public ProductsViewModel AddNewProduct(AddProductViewModel model)
         {
-
             var dalModel = new ProductDALModel();
             dalModel.ProductName = model.Name;
             dalModel.QuantityPerUnit = model.QuantityPerUnit;     
 
             _productStore.InsertNewProduct(dalModel);
             var dalProducts = _productStore.SelectAllProducts();
-            var products = new List<Product>();
-
-            foreach (var dalProduct in dalProducts)
-            {
-                var product = new Product();
-                product.Name = dalProduct.ProductName;
-                product.ID = dalProduct.ProductID;      //MIGHT NEED TO REMOVE PRODUCT ID
-                product.QuantityPerUnit = dalProduct.QuantityPerUnit;
-
-                products.Add(product);
-            }
-
-            var productModel = new ProductsViewModel();
-            productModel.Products = products;
-            return productModel;
+            return ReturnListOfProducts(dalProducts);
         }
 
         public ProductsViewModel RemoveProduct(int id)
         {
             _productStore.DeleteProduct(id);
             var dalProducts = _productStore.SelectAllProducts();
-            var products = new List<Product>();
-
-            foreach (var dalProduct in dalProducts)
-            {
-                var product = new Product();
-                product.Name = dalProduct.ProductName;
-                product.ID = dalProduct.ProductID;
-
-                products.Add(product);
-            }
-                                
-            var productModel = new ProductsViewModel();
-            productModel.Products = products;
-            return productModel;
+            return ReturnListOfProducts(dalProducts);
         }
 
-       
         public ProductsViewModel EditProduct(AProductViewModel model)
         {
             var dalModel = new ProductDALModel
@@ -115,10 +71,21 @@ namespace DapperDemo.NorthwindServices
                 UnitPrice = model.UnitPrice,
                 UnitsInStock = model.UnitsInStock,
                 UnitsOnOrder = model.UnitsOnOrder
-            };           
+            };
 
             _productStore.UpdateProduct(dalModel);
             var dalProducts = _productStore.SelectAllProducts();
+            return ReturnListOfProducts(dalProducts);
+        }
+
+        public ProductsViewModel SearchProduct(string searchTerm)
+        {
+            var dalProducts = _productStore.SearchAProduct(searchTerm);
+            return ReturnListOfProducts(dalProducts);
+        }
+
+        private static ProductsViewModel ReturnListOfProducts(IEnumerable<ProductDALModel> dalProducts)
+        {
             var products = new List<Product>();
 
             foreach (var dalProduct in dalProducts)
@@ -134,5 +101,9 @@ namespace DapperDemo.NorthwindServices
             productModel.Products = products;
             return productModel;
         }
+
+      
+
+
     }
 }
