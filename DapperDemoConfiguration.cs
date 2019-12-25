@@ -13,5 +13,7 @@ namespace DapperDemo
     public class Database
     {
         public string ConnectionString { get; set; }
+        public string ConnectionString2 { get; set; }
+
     }
 }

@@ -9,6 +9,11 @@ namespace DapperDemo.Models
     {
 
         public string Name { get; set; }
+        public string SupplierID { get; set; }
+        public string CategoryID { get; set; }
         public string QuantityPerUnit { get; set; }
+        public string UnitPrice { get; set; }
+        public string UnitsInStock { get; set; }
+        public string UnitsOnOrder { get; set; }
     }
 }

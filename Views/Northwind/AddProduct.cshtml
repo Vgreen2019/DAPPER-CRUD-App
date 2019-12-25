@@ -18,9 +18,34 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="SupplierID" class="control-label"></label>
+                <input asp-for="SupplierID" class="form-control" />
+                <span asp-validation-for="SupplierID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryID" class="control-label"></label>
+                <input asp-for="CategoryID" class="form-control" />
+                <span asp-validation-for="CategoryID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="QuantityPerUnit" class="control-label"></label>
                 <input asp-for="QuantityPerUnit" class="form-control" />
                 <span asp-validation-for="QuantityPerUnit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitPrice" class="control-label"></label>
+                <input asp-for="UnitPrice" class="form-control" />
+                <span asp-validation-for="UnitPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitsInStock" class="control-label"></label>
+                <input asp-for="UnitsInStock" class="form-control" />
+                <span asp-validation-for="UnitsInStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitsOnOrder" class="control-label"></label>
+                <input asp-for="UnitsOnOrder" class="form-control" />
+                <span asp-validation-for="UnitsOnOrder" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Add Product" class="btn btn-default" />
@@ -30,6 +55,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-area="" asp-controller="Northwind" asp-action="GetAllProducts"><button>View All Products</button></a>
 </div>
 
