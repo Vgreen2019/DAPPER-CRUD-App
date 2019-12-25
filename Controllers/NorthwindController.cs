@@ -83,5 +83,17 @@ namespace DapperDemo.Controllers
             return View("GetAllProducts", editedProduct);
         }
 
+        public IActionResult SearchProduct()
+        {
+            return View();
+        }
+
+        public IActionResult SearchProductResults(SearchProductViewModel model)
+        {
+            var results = _productService.SearchProduct(model.SearchTerm);
+
+            return View(results);
+        }
+
     }
 }
