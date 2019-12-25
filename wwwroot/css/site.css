@@ -39,4 +39,30 @@ body {
     }
 }
 
+body.products {
+    background-color: #0802AB;
+    color: #AFA8BA;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+a.products:hover {
+    color: limegreen;
+}
+
+.productbtn:hover {
+    background-color: #3FBEA7;
+}
+
+body.doesntexist {
+    background-image: linear-gradient(to right, #0802ab, #900090, #c7006a, #e30041, #eb1212);
+    color: white;
+}
+
+.doesntexist-btn {
+    padding: 28px 16px;
+    font-size: 20px;
+    border-radius: 45%;
+}
+
 

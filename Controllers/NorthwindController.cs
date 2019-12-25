@@ -91,8 +91,7 @@ namespace DapperDemo.Controllers
         public IActionResult SearchProductResults(SearchProductViewModel model)
         {
             var results = _productService.SearchProduct(model.SearchTerm);
-
-            return View(results);
+            return (results.Products.Count() == 0) ? View("ProductDoesntExist") : View(results);
         }
 
     }

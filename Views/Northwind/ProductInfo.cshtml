@@ -4,27 +4,27 @@
     ViewData["Title"] = "ProductInfo";
 }
 
-<h2>ProductInfo</h2>
+    <body class="products">
+        <h2>ProductInfo</h2>
 
-<div>
-    <hr />
-    <div>
-        <p>ID: @Model.ID</p>
-        <p>Name: @Model.Name</p>
-        <p>Supplier ID: @Model.SupplierID</p>
-        <p>Category ID: @Model.CategoryID</p>
-        <p>Quantity Per Unit: @Model.QuantityPerUnit</p>
-        <p>Unit Price: @Model.UnitPrice</p>
-        <p>Units In Stock: @Model.UnitsInStock</p>
-        <p>Units On Order: @Model.UnitsOnOrder</p>
-    </div>
-</div>
-
-
-<div>
-    <a asp-controller="Northwind" asp-action="GetAllProducts"><button>Back to Product List</button></a> |
-    <a asp-controller="Northwind" asp-action="RemoveProductResults" asp-route-id="@Model.ID"><button>Delete Product</button></a> |
-    <a asp-controller="Northwind" asp-action="EditProduct" asp-route-id="@Model.ID"><button>Edit Product</button></a>
+        <div>
+            <hr />
+            <div>
+                <p>ID: @Model.ID</p>
+                <p>Name: @Model.Name</p>
+                <p>Supplier ID: @Model.SupplierID</p>
+                <p>Category ID: @Model.CategoryID</p>
+                <p>Quantity Per Unit: @Model.QuantityPerUnit</p>
+                <p>Unit Price: @Model.UnitPrice</p>
+                <p>Units In Stock: @Model.UnitsInStock</p>
+                <p>Units On Order: @Model.UnitsOnOrder</p>
+            </div>
+        </div>
 
 
-</div>
+        <div>
+            <a asp-controller="Northwind" asp-action="GetAllProducts"><button class="productbtn">Back to Product List</button></a> |
+            <a asp-controller="Northwind" asp-action="RemoveProductResults" asp-route-id="@Model.ID"><button class="productbtn">Delete Product</button></a> |
+            <a asp-controller="Northwind" asp-action="EditProduct" asp-route-id="@Model.ID"><button class="productbtn">Edit Product</button></a>
+        </div>
+    </body>

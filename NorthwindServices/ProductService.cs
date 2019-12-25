@@ -100,10 +100,6 @@ namespace DapperDemo.NorthwindServices
             var productModel = new ProductsViewModel();
             productModel.Products = products;
             return productModel;
-        }
-
-      
-
-
+        }    
     }
 }

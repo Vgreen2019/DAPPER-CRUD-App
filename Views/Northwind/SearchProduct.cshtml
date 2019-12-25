@@ -4,27 +4,28 @@
     ViewData["Title"] = "SearchProduct";
 }
 
-<h2>SearchProduct</h2>
+    <body class="products">
+        <h2>Search A Product</h2>
 
-<h4>SearchProductViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="SearchProductResults">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="SearchTerm" class="control-label"></label>
-                <input asp-for="SearchTerm" class="form-control" />
-                <span asp-validation-for="SearchTerm" class="text-danger"></span>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="SearchProductResults">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="SearchTerm" class="control-label"></label>
+                        <input asp-for="SearchTerm" class="form-control" />
+                        <span asp-validation-for="SearchTerm" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Search" class="btn btn-default" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Search" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
-</div>
+        </div>
 
-<div>
-    <a asp-controller="Northwind" asp-action="GetAllProducts"><button>Back to Product List</button></a> 
-</div>
+        <div>
+            <a asp-controller="Northwind" asp-action="GetAllProducts"><button class="productbtn">Back to Product List</button></a>
+        </div>
+    </body>
 
