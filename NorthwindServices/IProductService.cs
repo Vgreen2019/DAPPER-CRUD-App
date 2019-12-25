@@ -13,6 +13,7 @@ namespace DapperDemo.NorthwindServices
         ProductsViewModel AddNewProduct(AddProductViewModel model);
         ProductsViewModel RemoveProduct(int id);
         ProductsViewModel EditProduct(AProductViewModel model);
+        ProductsViewModel SearchProduct(string searchTerm);
 
 
     }
