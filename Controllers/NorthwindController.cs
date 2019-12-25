@@ -34,7 +34,7 @@ namespace DapperDemo.Controllers
         //    return View(result);
         //}
 
-        public IActionResult Product() 
+        public IActionResult GetAllProducts() 
         {
             var result = _productService.GettingProducts();
             return View(result);
@@ -54,7 +54,7 @@ namespace DapperDemo.Controllers
         public IActionResult AddProductResults(AddProductViewModel model)
         {
             var productsViewModel = _productService.AddNewProduct(model);  
-            return View("Product", productsViewModel);
+            return View("GetAllProducts", productsViewModel);
         }
 
         public IActionResult DeleteProduct(int id)
@@ -67,10 +67,10 @@ namespace DapperDemo.Controllers
         public IActionResult RemoveProductResults(int id)
         {
             var productsViewModel = _productService.RemoveProduct(id); 
-            return View("Product", productsViewModel);
+            return View("GetAllProducts", productsViewModel);
         }
 
-        public IActionResult EditProduct(AProductViewModel model)     //changed ID to model
+        public IActionResult EditProduct(AProductViewModel model)     
         {
             var getProduct = _productService.GetProductInfo(model.ID);
 
@@ -80,7 +80,7 @@ namespace DapperDemo.Controllers
         public IActionResult EditProductResults(AProductViewModel model)
         {
             var editedProduct = _productService.EditProduct(model);  
-            return View("Product", editedProduct);
+            return View("GetAllProducts", editedProduct);
         }
 
     }

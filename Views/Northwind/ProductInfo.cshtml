@@ -22,10 +22,9 @@
 
 
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-controller="Northwind" asp-action="Product">Back to Product List</a>
-    <a asp-controller="Northwind" asp-action="RemoveProductResults" asp-route-id="@Model.ID">Delete Product</a>
-    <a asp-controller="Northwind" asp-action="EditProduct" asp-route-id="@Model.ID">Edit</a>
+    <a asp-controller="Northwind" asp-action="Product"><button>Back to Product List</button></a> |
+    <a asp-controller="Northwind" asp-action="RemoveProductResults" asp-route-id="@Model.ID"><button>Delete Product</button></a> |
+    <a asp-controller="Northwind" asp-action="EditProduct" asp-route-id="@Model.ID"><button>Edit</button></a>
 
 
 </div>

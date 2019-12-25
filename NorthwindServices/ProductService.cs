@@ -64,7 +64,6 @@ namespace DapperDemo.NorthwindServices
             dalModel.QuantityPerUnit = model.QuantityPerUnit;     
 
             _productStore.InsertNewProduct(dalModel);
-
             var dalProducts = _productStore.SelectAllProducts();
             var products = new List<Product>();
 
@@ -80,14 +79,12 @@ namespace DapperDemo.NorthwindServices
 
             var productModel = new ProductsViewModel();
             productModel.Products = products;
-
             return productModel;
         }
 
         public ProductsViewModel RemoveProduct(int id)
         {
             _productStore.DeleteProduct(id);
-
             var dalProducts = _productStore.SelectAllProducts();
             var products = new List<Product>();
 
@@ -99,26 +96,28 @@ namespace DapperDemo.NorthwindServices
 
                 products.Add(product);
             }
-
                                 
             var productModel = new ProductsViewModel();
             productModel.Products = products;
-
             return productModel;
-
-
         }
 
        
         public ProductsViewModel EditProduct(AProductViewModel model)
         {
-            var dalModel = new ProductDALModel();
-            dalModel.ProductID = model.ID;
-            dalModel.ProductName = model.Name;
-            dalModel.QuantityPerUnit = model.QuantityPerUnit;
+            var dalModel = new ProductDALModel
+            {
+                ProductID = model.ID,
+                ProductName = model.Name,
+                SupplierID = model.SupplierID,
+                CategoryID = model.CategoryID,
+                QuantityPerUnit = model.QuantityPerUnit,
+                UnitPrice = model.UnitPrice,
+                UnitsInStock = model.UnitsInStock,
+                UnitsOnOrder = model.UnitsOnOrder
+            };           
 
             _productStore.UpdateProduct(dalModel);
-
             var dalProducts = _productStore.SelectAllProducts();
             var products = new List<Product>();
 
@@ -131,10 +130,8 @@ namespace DapperDemo.NorthwindServices
                 products.Add(product);
             }
 
-
             var productModel = new ProductsViewModel();
             productModel.Products = products;
-
             return productModel;
         }
     }
