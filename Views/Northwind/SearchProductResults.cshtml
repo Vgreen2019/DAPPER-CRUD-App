@@ -4,38 +4,40 @@
     ViewData["Title"] = "SearchProductResults";
 }
 
-<h2>Results</h2>
+    <body class="products">
+        <h2>Results</h2>
 
-<div>
-    <table>
-        <thead>
-            <tr>
-                <th>Product Name</th>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
 
 
 
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var product in Model.Products)
-            {
-                <tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.Products)
+                    {
+                        <tr>
 
-                    <td>
-                        <a asp-controller="Northwind" asp-action="ProductInfo" asp-route-id="@product.ID">@product.Name</a>
-                    </td>
-                    <td>
-                        <a asp-controller="Northwind" asp-action="EditProduct" asp-route-id="@product.ID"><button class="btn btn-warning">Edit</button></a>
-                    </td>
-                    <td>
-                        <a asp-controller="Northwind" asp-action="RemoveProductResults" asp-route-id="@product.ID"><button class="btn btn-warning">Delete</button></a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-<div>
-    <a asp-area="" asp-controller="Northwind" asp-action="SearchProduct"><button>Search Another Product</button></a>
+                            <td>
+                                <a asp-controller="Northwind" asp-action="ProductInfo" asp-route-id="@product.ID">@product.Name</a>
+                            </td>
+                            <td>
+                                <a asp-controller="Northwind" asp-action="EditProduct" asp-route-id="@product.ID"><button class="productbtn">Edit</button></a>
+                            </td>
+                            <td>
+                                <a asp-controller="Northwind" asp-action="RemoveProductResults" asp-route-id="@product.ID"><button class="productbtn">Delete</button></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <a asp-area="" asp-controller="Northwind" asp-action="SearchProduct"><button class="productbtn">Search Another Product</button></a>
 
-</div>
+        </div>
+    </body>
